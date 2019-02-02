@@ -19,7 +19,7 @@ class App extends Component {
       const accounts = await web3.eth.getAccounts();
 
       // Get the contract instance.
-      const factoryContractAddress = "0x2dafcdEA0fA2edda26E1A35186d4068553235f7A";
+      const factoryContractAddress = "0x531f33c1ab748431426c033f88dfd0c30e0ebec5";
       const factoryContract = new web3.eth.Contract(
         JSON.parse(FactoryContract.interface), factoryContractAddress
       );

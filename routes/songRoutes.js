@@ -21,7 +21,8 @@ router.post('/temp', (req, res) => {
 
 router.get('/', (req, res) => {
     Song.find()
-        .then(list => res.json(list));
+        .then(list => res.json(list))
+        .catch(console.log);
 })
 
 module.exports = router;
