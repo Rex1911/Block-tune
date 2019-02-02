@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import Navbar from "../../Components/Navbar";
 import Banner from "./Banner";
+import SongList from "./SongList";
 
 class Home extends Component {
 
@@ -11,6 +12,7 @@ class Home extends Component {
       <div>
         <Navbar />
         <Banner />
+        <SongList />
       </div>
     );
   }
