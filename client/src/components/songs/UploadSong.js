@@ -29,6 +29,7 @@ class UploadSong extends Component {
   }
 
   handleSubmit = async () => {
+    this.setState({artist: this.props.username});
     const contributerAddressArray = this.contributerArray.map((contri) => {
       let address = contri.address;
       return address;

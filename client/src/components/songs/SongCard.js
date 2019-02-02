@@ -7,7 +7,7 @@ import CardMedia from "@material-ui/core/CardMedia";
 import Button from "@material-ui/core/Button";
 import Typography from "@material-ui/core/Typography";
 
-const SongCard = () => {
+const SongCard = (props) => {
   return (
     <Card>
       <CardActionArea>
@@ -20,11 +20,11 @@ const SongCard = () => {
         />
         <CardContent>
           <Typography gutterBottom variant="h5" component="h2">
-            Song Title
+            {props.title}
           </Typography>
-          <Typography component="p">Author: John Doe</Typography>
-          <Typography component="p">Genre: Rock</Typography>
-          <Typography component="p">Duration: 4:03</Typography>
+          <Typography component="p">Author: {props.author}</Typography>
+          <Typography component="p">Genre: {props.genre}</Typography>
+          <Typography component="p">Cost: {props.cost}</Typography>
         </CardContent>
       </CardActionArea>
       <CardActions style={{ position: "relative" }}>
