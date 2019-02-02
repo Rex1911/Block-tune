@@ -1,4 +1,5 @@
 const initState = {
+  username: '',
   address: 'Not Logged In',
   web3: '',
   factoryContract: '',
@@ -17,6 +18,11 @@ const Reducer = (state = initState, action) => {
     case "SET_SONG_ADDRESS":
       return{
         songContract: action.songContract,
+        ...state
+      }
+    case "SET_USERNAME":
+      return{
+        username: action.name,
         ...state
       }
     default:

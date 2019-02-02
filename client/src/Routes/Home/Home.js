@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import connect from "react-redux";
+import { connect } from "react-redux";
 import Navbar from "../../Components/Navbar";
 import Banner from "./Banner";
 
@@ -47,7 +47,7 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
   return{
-    setUser: (address, name)
+    setUser: (address, name) => dispatch({type: "SET_USERNAME", name})
   }
 }
 

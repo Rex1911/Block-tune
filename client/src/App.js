@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import Navbar from "./Components/Navbar";
 import Home from "./Routes/Home/Home";
 import Signup from "./Routes/Signup/Signup";
 import { Switch, Route } from "react-router-dom";
@@ -53,7 +52,9 @@ class App extends Component {
 }
 
 const mapDispatchToProps = (dispatch) => {
-  setInitials: (address, web3, factory) = dispatch({type: "SET_INITIALS", web3, address, factory})
+  return{
+    setInitials: (address, web3, factory) => dispatch({type: "SET_INITIALS", address, web3, factory})
+  }
 }
 
 export default connect(null, mapDispatchToProps)(App);
