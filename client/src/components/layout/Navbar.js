@@ -24,7 +24,7 @@ class Navbar extends Component{
   render(){
     let name;
     if(this.props.isLoggedIn){
-      name = this.props.username;
+      name = "welcome " + this.props.username;
     } else {
       name =<Link to='/signup'><Button color="inherit">SignUp</Button></Link>
     }
