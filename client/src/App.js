@@ -21,10 +21,11 @@ class App extends Component {
       console.log(accounts);
 
       // Get the contract instance.
-      const factoryContractAddress = "";
-      const factoryContract = await new web3.eth.Contract(
+      const factoryContractAddress = "0x2dafcdEA0fA2edda26E1A35186d4068553235f7A";
+      const factoryContract = new web3.eth.Contract(
         JSON.parse(FactoryContract.interface), factoryContractAddress
       );
+      console.log(factoryContract);
 
       // Set web3, accounts, and contract to the global state, and then proceed with an
       // example of interacting with the contract's methods.

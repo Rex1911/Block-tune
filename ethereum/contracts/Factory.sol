@@ -2,8 +2,10 @@ pragma solidity 0.4.25;
 
 contract Factory{
     mapping(uint=>address) public songMapping;
-    function createSong(string _title, string _artistName, address[] _contributers,uint[] _cut) public returns(address){
-        address new_song = new Song(msg.sender, _title, _artistName, _contributers, _cut);
+    address new_song;
+    function createSong(string _title, string _artistName, address[] _contributers,uint[] _cut, uint id) public view returns(address){
+        new_song = new Song(msg.sender, _title, _artistName, _contributers, _cut);
+        songMapping[id] = new_song;
         return new_song;
     }
 }
@@ -32,7 +34,7 @@ contract Song {
         }
     }
     
-    function purchase() payable public {
+    function purchase() public payable {
         require(hasPurchased[msg.sender] == false);
         hasPurchased[msg.sender] = true;
         for(uint i = 0; i < c.length; i++){

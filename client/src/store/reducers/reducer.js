@@ -6,7 +6,8 @@ const initState = {
   factoryContract: '',
   bottomValue: 0,
   history: '',
-  changed: false
+  changed: false,
+  songId: 0
 }
 
 const Reducer = (state = initState, action) => {

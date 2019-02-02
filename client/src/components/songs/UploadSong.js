@@ -1,4 +1,5 @@
 import React, { Component, Fragment } from "react";
+import { connect } from 'react-redux';
 import TextField from "@material-ui/core/TextField";
 import Fab from "@material-ui/core/Fab";
 import AddIcon from "@material-ui/icons/Add";
@@ -11,7 +12,10 @@ class UploadSong extends Component {
   state = {
     contributers: 1,
     date: formatDate(new Date()),
-    contributerArray: []
+    contributerArray: [],
+    id: Math.ceil(Math.random() * 10000),
+    status: '',
+    contractAddress: ''
   };
 
   handleClick = () => {
@@ -25,22 +29,55 @@ class UploadSong extends Component {
     this.setState({[e.target.name]: e.target.value})
   }
 
-  handleSubmit = () => {
-    const {...data} = this.state;
-    console.log(data);
-    fetch("/song/temp", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json;charset=UTF-8"
-      },
-      body: JSON.stringify(data)
-    })
-    .then(res => res.json())
-    .then(res => {
-      console.log(res)
-    })
-    .catch(err => {
-      console.log(err);
+  handleSubmit = async () => {
+    console.log(this.state.id);
+    const contributerAddressArray = this.contributerArray.map((contri) => {
+      let address = contri.address;
+      return address;
+    });
+    const contributerCutArray = this.contributerArray.map((contri) => {
+      let cut = contri.cut;
+      return cut;
+    });
+    console.log(this.props.factoryContract);
+    this.setState({status: "uploading to blockchain"});
+    await this.props.factoryContract.methods
+      .createSong(
+        this.state.name,
+        this.props.username,
+        contributerAddressArray,
+        contributerCutArray,
+        this.state.id
+      )
+      .send({
+        from: this.props.address
+      })
+      .then(res => {
+        console.log(res);
+        this.setState({status: "uploaded to blockchain successfully"});
+      })
+      .catch(err => {
+        console.log(err);
+        this.setState({status: "upload failed"});
+      });
+    let songAddress = await this.props.factoryContract.methods.songMapping(this.state.id).call();
+    console.log(songAddress);
+    this.setState({contractAddress: songAddress}, () => {
+      const {status, id, ...data} = this.state;
+      fetch("/song/temp", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json;charset=UTF-8"
+        },
+        body: JSON.stringify(data)
+      })
+      .then(res => res.json())
+      .then(res => {
+        console.log(res)
+      })
+      .catch(err => {
+        console.log(err);
+      });
     });
   }
 
@@ -141,7 +178,7 @@ class UploadSong extends Component {
                 upload song
             </Button>
             </form>
-
+            {this.state.status}
         </div>
         <BottomNav />
       </Fragment>
@@ -149,4 +186,12 @@ class UploadSong extends Component {
   }
 }
 
-export default UploadSong;
+const mapStateToProps = (state) => {
+  return{
+    factoryContract: state.factoryContract,
+    username: state.username,
+    address: state.address
+  }
+}
+
+export default connect(mapStateToProps)(UploadSong);

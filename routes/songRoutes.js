@@ -8,12 +8,13 @@ router.post('/temp', (req, res) => {
     console.log(req.body);
     const newSong = new Song({
         name: req.body.name,
-        contractAddress: '',
+        contractAddress: req.body.contractAddress,
         price: req.body.price,
         genre: req.body.genre,
         artist: req.body.artist,
         numberContributers: req.body.contributers,
-        contributers: req.body.contributerArray
+        contributers: req.body.contributerArray,
+        id: req.body.id
     });
     newSong.save()
         .then(a => res.status(200).json({success: true}))
