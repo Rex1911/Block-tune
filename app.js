@@ -1,10 +1,10 @@
-const express    = require("express"),
-      app        = express(),
-      bodyParser = require('body-parser'),
-      path       = require("path"),
-      mongoose   = require("mongoose"),
-      authRoutes = require("./routes/auth/authRoutes"),
-      User       = require("./models/userModel");
+const express       = require("express"),
+      app           = express(),
+      bodyParser    = require('body-parser'),
+      path          = require("path"),
+      mongoose      = require("mongoose"),
+      authRoutes    = require("./routes/authRoutes"),
+      songRoutes    = require("./routes/songRouter");
 
 //=======================
 // DATABASE CONFIG
@@ -27,6 +27,7 @@ app.use(bodyParser.urlencoded({ extended: false }))
 //=======================
 // For all auth routes for login, signup etc.
 app.use("/auth", authRoutes);
+app.use("/song", songRoutes);
 
 app.get('/', (req, res) => {
     res.sendFile(path.resolve(__dirname,"client","public","index.html"));

@@ -1,6 +1,6 @@
 const express   = require('express'),
       router    = express.Router(),
-      User      = require('../../models/userModel');
+      User      = require('../models/userModel');
 
 router.post('/login', async (req, res) => {
     console.log(req.body);
@@ -18,7 +18,6 @@ router.post('/login', async (req, res) => {
 });
 
 router.post('/signin', (req, res) => {
-    console.log(req.body);
     const newUser = new User({
         name: req.body.name,
         address: req.body.address,
