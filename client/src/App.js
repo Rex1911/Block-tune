@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import Home from "./Routes/Home/Home";
-import Signup from "./Routes/Signup/Signup";
+import Home from "./components/home/Home";
+import Signup from "./components/signup/Signup";
 import { Switch, Route } from "react-router-dom";
 import getWeb3 from './util/getWeb3';
 import FactoryContract from "./contracts/Factory.json";

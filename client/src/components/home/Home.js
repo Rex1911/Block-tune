@@ -1,8 +1,8 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import Navbar from "../../Components/Navbar";
+import Navbar from "../layout/Navbar";
 import Banner from "./Banner";
-import SongList from "./SongList";
+import SongList from "../songs/SongList";
 
 class Home extends Component {
 

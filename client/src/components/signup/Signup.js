@@ -1,13 +1,14 @@
 import React, { Component, Fragment } from "react";
 import { connect } from 'react-redux';
-import Navbar from '../../Components/Navbar';
+import Navbar from '../layout/Navbar';
 import TextField from "@material-ui/core/TextField";
 import Button from "@material-ui/core/Button";
 
 class Signup extends Component {
 
   state = {
-    name: ''
+    name: '',
+    status: ''
   }
 
   handleChange = (e) => {
@@ -29,10 +30,16 @@ class Signup extends Component {
     .then(res => res.json())
     .then(res => {
       if(res.success){
+        this.setState({status: ''});
         this.handleRedirect();
+      } else {
+        this.setState({status: 'some error occured'});
       }
     })
-    .catch(console.log);
+    .catch(err => {
+      this.setState({status: 'some error occured'});
+      console.log(err);
+    });
   }
 
   handleRedirect = () => {
@@ -68,6 +75,7 @@ class Signup extends Component {
           SignUp
         </Button>
       </div>
+      <p>{this.state.status}</p>
       </Fragment>
     )
   }
