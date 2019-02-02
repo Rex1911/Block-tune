@@ -5,10 +5,13 @@ import AddIcon from "@material-ui/icons/Add";
 import Button from "@material-ui/core/Button";
 import BottomNav from "../layout/BottomNav";
 import Navbar from "../layout/Navbar";
+import formatDate from '../../util/date';
 
 class UploadSong extends Component {
   state = {
-    contributers: 1
+    contributers: 1,
+    date: formatDate(new Date()),
+    contributerArray: []
   };
 
   handleClick = () => {
@@ -17,18 +20,63 @@ class UploadSong extends Component {
     console.log(currentCount);
   };
 
+  handleChange = (e) => {
+    this.setState({[e.target.name]: e.target.value})
+  }
+
+  handleSubmit = () => {
+    const {...data} = this.state;
+    console.log(data);
+    fetch("/song/temp", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json;charset=UTF-8"
+      },
+      body: JSON.stringify(data)
+    })
+    .then(res => res.json())
+    .then(res => {
+      console.log(res)
+    })
+    .catch(err => {
+      console.log(err);
+    });
+  }
+
+  contributerArray = [];
+
+  handleContributerChange = (e, i) => {
+    console.log(e, i);
+    this.contributerArray[i] = e.target.value;
+    this.setState({contributerArray: this.contributerArray});
+  }
+
   render() {
     let contributers = [];
     for (let i = 0; i < this.state.contributers; i++) {
       let label = "Contributer Address #" + (i + 1);
+      let cutLabel = "Cut #" + (i+1);
       contributers.push(
+        <div>
         <TextField
           label={label}
-          value=""
           margin="normal"
           variant="outlined"
-          fullWidth
+          style={{width:"51%"}}
+          onChange = {(e) => {
+            this.handleContributerChange(e ,i);
+          }}
         />
+        <TextField
+          label={cutLabel}
+          margin="normal"
+          variant="outlined"
+          style={{marginLeft:20}}
+          onChange = {(e) => {
+            this.handleContributerChange(e ,i);
+          }}
+        />
+        </div>
       );
     }
     return (
@@ -40,26 +88,29 @@ class UploadSong extends Component {
 
             <TextField
                 label="Song Name"
-                value=""
+                name="name"
                 margin="normal"
                 variant="outlined"
                 fullWidth
+                onChange = {this.handleChange}
             />
 
             <TextField
                 label="Genre"
-                value=""
+                name="genre"
                 margin="normal"
                 variant="outlined"
                 fullWidth
+                onChange = {this.handleChange}
             />
 
             <TextField
                 label="Price"
-                value=""
+                name="price"
                 margin="normal"
                 variant="outlined"
                 fullWidth
+                onChange = {this.handleChange}
             />
 
             {contributers}
@@ -75,6 +126,7 @@ class UploadSong extends Component {
                 variant="contained"
                 color="secondary"
                 style={{ marginTop: 20, marginLeft: "38%",marginBottom:70 }}
+                onClick = {this.handleSubmit}
             >
                 upload song
             </Button>

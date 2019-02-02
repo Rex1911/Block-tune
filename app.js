@@ -4,7 +4,7 @@ const express       = require("express"),
       path          = require("path"),
       mongoose      = require("mongoose"),
       authRoutes    = require("./routes/authRoutes"),
-      songRoutes    = require("./routes/songRouter");
+      songRoutes    = require("./routes/songRoutes");
 
 //=======================
 // DATABASE CONFIG

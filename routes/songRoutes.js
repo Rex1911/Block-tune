@@ -3,14 +3,17 @@ const express   = require('express'),
       Song      = require('../models/songModel');
 
 // To add new song
-router.post('/', async (req, res) => {
+router.post('/temp', (req, res) => {
+    console.log("Song Posted");
+    console.log(req.body);
     const newSong = new Song({
         name: req.body.name,
         contractAddress: '',
+        price: req.body.price,
         genre: req.body.genre,
-        duration: req.body.duration,
         artist: req.body.artist,
-        contributers: req.body.contributers
+        numberContributers: req.body.contributers,
+        contributers: req.body.contributerArray
     });
     newSong.save()
         .then(a => res.status(200).json({success: true}))
