@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import Home from "./components/home/Home";
 import Signup from "./components/signup/Signup";
+import UploadSong from "./components/songs/UploadSong";
 import { Switch, Route } from "react-router-dom";
 import getWeb3 from './util/getWeb3';
 import FactoryContract from "./contracts/Factory.json";
@@ -66,6 +67,7 @@ class App extends Component {
           <Switch>
             <Route exact path="/" component={Home} />
             <Route path="/signup" component={Signup} />
+            <Route path="/uploadsong" component={UploadSong} />
           </Switch>
         </div>
       </BrowserRouter>
