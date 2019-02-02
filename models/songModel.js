@@ -8,14 +8,13 @@ const songSchema = mongoose.Schema({
     price: Number,
     datePublished: String,
     numberContributers: Number,
-    contributers: {
-        address: String,
-        cut: Number,
-        accepted: {
-            type: Boolean,
-            default: false
+    contributers: [
+        {
+            address: String,
+            cut: String,
+            accepted: Boolean
         }
-    }
+    ]
 });
 
 module.exports = mongoose.model("Song",songSchema);

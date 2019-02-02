@@ -17,6 +17,7 @@ class UploadSong extends Component {
   handleClick = () => {
     let currentCount = this.state.contributers + 1;
     this.setState({ contributers: currentCount });
+    this.contributerArray.push({address: '',cut: '',accepted: false})
     console.log(currentCount);
   };
 
@@ -43,11 +44,20 @@ class UploadSong extends Component {
     });
   }
 
-  contributerArray = [];
+  contributerArray = [
+    {
+      address: '',
+      cut: '',
+      accepted: false
+    }
+  ];
 
-  handleContributerChange = (e, i) => {
-    console.log(e, i);
-    this.contributerArray[i] = e.target.value;
+  handleContributerChange = (e, i, typeString) => {
+    if(typeString === 'address'){
+      this.contributerArray[i].address = e.target.value;
+    } else {
+      this.contributerArray[i].cut = e.target.value;
+    }
     this.setState({contributerArray: this.contributerArray});
   }
 
@@ -64,7 +74,7 @@ class UploadSong extends Component {
           variant="outlined"
           style={{width:"51%"}}
           onChange = {(e) => {
-            this.handleContributerChange(e ,i);
+            this.handleContributerChange(e ,i, 'address');
           }}
         />
         <TextField
@@ -73,7 +83,7 @@ class UploadSong extends Component {
           variant="outlined"
           style={{marginLeft:20}}
           onChange = {(e) => {
-            this.handleContributerChange(e ,i);
+            this.handleContributerChange(e ,i, 'cut');
           }}
         />
         </div>

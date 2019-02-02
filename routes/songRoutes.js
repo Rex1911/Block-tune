@@ -17,7 +17,7 @@ router.post('/temp', (req, res) => {
     });
     newSong.save()
         .then(a => res.status(200).json({success: true}))
-        .catch(err => res.status(404).json({success: false}));
+        .catch(console.log);
 });
 
 module.exports = router;
