@@ -4,7 +4,9 @@ const initState = {
   address: '',
   web3: '',
   factoryContract: '',
-  songContract: ''
+  bottomValue: 0,
+  history: '',
+  changed: false
 }
 
 const Reducer = (state = initState, action) => {
@@ -16,6 +18,12 @@ const Reducer = (state = initState, action) => {
         web3: action.web3,
         factoryContract: action.factory,
         address: action.address,
+      }
+    case "SET_HISTORY":
+      console.log(action.history);
+      return{
+        ...state,
+        history: action.history
       }
     case "SET_SONG_ADDRESS":
       console.log("song address");
@@ -29,6 +37,17 @@ const Reducer = (state = initState, action) => {
         ...state,
         username: action.name,
         isLoggedIn: 1,
+      }
+    case "BOTTOM_VALUE":
+      return{
+        ...state,
+        bottomValue: action.value,
+        changed: true
+      }
+    case "CHANGED":
+      return{
+        ...state,
+        changed: false
       }
     default:
       console.log("Default Reducer");

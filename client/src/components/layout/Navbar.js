@@ -22,14 +22,12 @@ class Navbar extends Component{
   };
 
   render(){
-    console.log(this.props.isLoggedIn);
     let name;
     if(this.props.isLoggedIn){
       name = this.props.username;
     } else {
       name =<Link to='/signup'><Button color="inherit">SignUp</Button></Link>
     }
-    console.log(this.props);
     return (
       <div style={this.styles.root}>
         <AppBar position="static" color="default">

@@ -3,16 +3,20 @@ import { connect } from "react-redux";
 import Navbar from "../layout/Navbar";
 import Banner from "./Banner";
 import SongList from "../songs/SongList";
+import bottomStatus from "../../util/bottomStatus"
 
 class Home extends Component {
 
   render() {
-    console.log(this.props);
+    if(this.props.history){
+      this.props.setHistory(this.props.history);
+    }
     return (
       <div>
         <Navbar />
         <Banner />
         <SongList />
+        {bottomStatus(this.props.isLoggedIn)}
       </div>
     );
   }
@@ -27,7 +31,8 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
   return{
-    setUser: (address, name) => dispatch({type: "SET_USERNAME", name})
+    setUser: (address, name) => dispatch({type: "SET_USERNAME", name}),
+    setHistory: (history) => dispatch({type:"SET_HISTORY", history})
   }
 }
 
