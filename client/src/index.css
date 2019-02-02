@@ -1,0 +1,12 @@
+body {
+  margin: 0px;
+  background-image: url("https://www.ujomusic.com/_next/static/images/header-background-806118c29cf878a85500f52625c39f46.png");
+  background-repeat: no-repeat;
+  background-size: cover;
+  height: 100vh;
+  font-family: "Major Mono Display";
+}
+
+.App {
+  font-family: Major Mono Display;
+}
