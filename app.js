@@ -21,8 +21,6 @@ let testUser = new User({
     publishedSongs: [],
     ownedSongs: []
 });
-testUser.save()
-    .catch(console.log);
 
 //=======================
 // Routes
