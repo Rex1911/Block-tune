@@ -5,34 +5,11 @@ import Banner from "./Banner";
 
 class Home extends Component {
 
-  handleLogin = async () => {
-    let data = {
-      address: this.props.address
-    };
-    fetch("/auth/login/", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json;charset=UTF-8"
-      },
-      body: JSON.stringify(data)
-    })
-    .then(res => res.json())
-    .then(res => {
-      if(res.newUser === true) {
-        this.props.history.push('/signup');
-      } else {
-        this.props.setUser({address: res.user.address, name: res.user.name})
-      }
-    })
-    .catch(err => {
-      console.log("Something went wrong!");
-    })
-  };
-
   render() {
+    console.log(this.props);
     return (
       <div>
-        <Navbar loginHandler={this.handleLogin} />
+        <Navbar />
         <Banner />
       </div>
     );
@@ -41,7 +18,8 @@ class Home extends Component {
 
 const mapStateToProps = (state) => {
   return{
-    address: state.address
+    address: state.address,
+    isLoggedIn: state.isLoggedIn
   }
 }
 

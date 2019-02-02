@@ -1,6 +1,7 @@
 const initState = {
+  isLoggedIn: 0,
   username: '',
-  address: 'Not Logged In',
+  address: '',
   web3: '',
   factoryContract: '',
   songContract: ''
@@ -9,21 +10,25 @@ const initState = {
 const Reducer = (state = initState, action) => {
   switch(action.type){
     case "SET_INITIALS":
+      console.log(action);
       return{
+        ...state,
         web3: action.web3,
         factoryContract: action.factory,
         address: action.address,
-        ...state
       }
     case "SET_SONG_ADDRESS":
+      console.log("song address");
       return{
+        ...state,
         songContract: action.songContract,
-        ...state
       }
     case "SET_USERNAME":
+      console.log("setname", action.name);
       return{
+        ...state,
         username: action.name,
-        ...state
+        isLoggedIn: 1,
       }
     default:
       console.log("Default Reducer");
