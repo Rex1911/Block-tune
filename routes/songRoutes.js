@@ -4,8 +4,6 @@ const express   = require('express'),
 
 // To add new song
 router.post('/temp', (req, res) => {
-    console.log("Song Posted");
-    console.log(req.body);
     const newSong = new Song({
         name: req.body.name,
         contractAddress: req.body.contractAddress,
@@ -20,5 +18,10 @@ router.post('/temp', (req, res) => {
         .then(a => res.status(200).json({success: true}))
         .catch(console.log);
 });
+
+router.get('/', (req, res) => {
+    Song.find()
+        .then(list => res.json(list));
+})
 
 module.exports = router;

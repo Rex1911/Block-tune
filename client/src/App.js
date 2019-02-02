@@ -17,15 +17,12 @@ class App extends Component {
 
       // Use web3 to get the user's accounts.
       const accounts = await web3.eth.getAccounts();
-      // For debugging purposes
-      console.log(accounts);
 
       // Get the contract instance.
       const factoryContractAddress = "0x2dafcdEA0fA2edda26E1A35186d4068553235f7A";
       const factoryContract = new web3.eth.Contract(
         JSON.parse(FactoryContract.interface), factoryContractAddress
       );
-      console.log(factoryContract);
 
       // Set web3, accounts, and contract to the global state, and then proceed with an
       // example of interacting with the contract's methods.

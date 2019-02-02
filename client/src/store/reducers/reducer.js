@@ -13,7 +13,6 @@ const initState = {
 const Reducer = (state = initState, action) => {
   switch(action.type){
     case "SET_INITIALS":
-      console.log(action);
       return{
         ...state,
         web3: action.web3,
@@ -21,7 +20,6 @@ const Reducer = (state = initState, action) => {
         address: action.address,
       }
     case "SET_HISTORY":
-      console.log(action.history);
       return{
         ...state,
         history: action.history

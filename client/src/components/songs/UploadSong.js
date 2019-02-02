@@ -22,7 +22,6 @@ class UploadSong extends Component {
     let currentCount = this.state.contributers + 1;
     this.setState({ contributers: currentCount });
     this.contributerArray.push({address: '',cut: '',accepted: false})
-    console.log(currentCount);
   };
 
   handleChange = (e) => {
@@ -30,7 +29,6 @@ class UploadSong extends Component {
   }
 
   handleSubmit = async () => {
-    console.log(this.state.id);
     const contributerAddressArray = this.contributerArray.map((contri) => {
       let address = contri.address;
       return address;
@@ -39,7 +37,6 @@ class UploadSong extends Component {
       let cut = contri.cut;
       return cut;
     });
-    console.log(this.props.factoryContract);
     this.setState({status: "uploading to blockchain"});
     await this.props.factoryContract.methods
       .createSong(
@@ -52,16 +49,12 @@ class UploadSong extends Component {
       .send({
         from: this.props.address
       })
-      .then(res => {
-        console.log(res);
-        this.setState({status: "uploaded to blockchain successfully"});
-      })
+      .then(res => this.setState({status: "uploaded to blockchain successfully"}))
       .catch(err => {
         console.log(err);
         this.setState({status: "upload failed"});
       });
     let songAddress = await this.props.factoryContract.methods.songMapping(this.state.id).call();
-    console.log(songAddress);
     this.setState({contractAddress: songAddress}, () => {
       const {status, id, ...data} = this.state;
       fetch("/song/temp", {

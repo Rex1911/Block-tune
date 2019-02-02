@@ -8,7 +8,6 @@ import PublishIcon from "@material-ui/icons/Publish";
 
 class BottomNav extends Component {
   render() {
-    console.log(this.props);
     if(this.props.changed){
       this.props.change();
       if(this.props.bottomValue === 0){
