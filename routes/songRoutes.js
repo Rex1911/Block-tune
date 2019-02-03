@@ -74,11 +74,10 @@ router.post("/upload",(req,res) => {
     )
 })
 
-router.post("/download", (req, res) => {
-    let name = req.body.name;
-    console.log(name)
-    console.log(__dirname + '/files/' + name)
-    res.download(__dirname + '/files/' + name);
+router.get("/download/:name", (req, res) => {
+    let name = req.params.name;
+    let path = __dirname + '/files/' + name;
+    res.download(path);
 })
 
 module.exports = router;

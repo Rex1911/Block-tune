@@ -41,13 +41,7 @@ class OwnedSongsList extends Component{
   
   handleDown = (name) => {
     let data = {name}
-    fetch("/song/download",{
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json;charset=UTF-8"
-      },
-      body:JSON.stringify(data)
-    })
+    window.location = `http://localhost:5000/song/download/${name}` 
   }
   
   render(){
