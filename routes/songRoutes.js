@@ -35,8 +35,16 @@ router.post('/purchase', (req, res) => {
 });
 
 router.post('/owned', (req, res) => {
+    console.log("Recive rew")
     User.find({address: req.body.address})
         .then(user => res.json(user))
+        .catch(err => res.status(404).json({success: false}));
+})
+
+router.post('/ownedSong', (req, res) => {
+    console.log("Recive rew")
+    Song.find({contractAddress: req.body.ownedAddress})
+        .then(song => res.json(song))
         .catch(err => res.status(404).json({success: false}));
 })
 

@@ -13,7 +13,8 @@ class OwnedSongsList extends Component{
     let data = {
       address: this.props.address
     }
-    fetch("/songs/owned", {
+    let songArray = [];
+    fetch("/song/owned", {
       method: "POST",
       headers: {
         "Content-Type": "application/json;charset=UTF-8"
@@ -22,12 +23,36 @@ class OwnedSongsList extends Component{
     })
     .then(res => res.json())
     .then(res => {
-      this.setState({data:res})
+      for(let i=0; i<res[0].ownedSongs.length; i++){
+        let data = { ownedAddress: res[0].ownedSongs[i] }
+        fetch("/song/ownedSong", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json;charset=UTF-8"
+          },
+          body: JSON.stringify(data)
+        })
+          .then(res => res.json())
+          .then(song => songArray.push(song[0]));
+      }
+      this.setState({data: songArray}, () => {
+        console.log("Done", this.state.data);
+      });
     })
     .catch(console.log);
   }
   
   render(){
+    let ownedSongComponent;
+      console.log(this.state.data);
+      ownedSongComponent = this.state.data.map(song => {
+        console.log("MEMEME");
+        return(
+          <Grid item xs>
+            <SongCard song={song}/>
+          </Grid>
+        )
+      });
     return (
       <div
         style={{
@@ -49,15 +74,7 @@ class OwnedSongsList extends Component{
         </Typography>
 
         <Grid container spacing={24}>
-          <Grid item xs>
-            <SongCard />
-          </Grid>
-          <Grid item xs>
-            <SongCard />
-          </Grid>
-          <Grid item xs>
-            <SongCard />
-          </Grid>
+          {ownedSongComponent}
         </Grid>
       </div>
     );
