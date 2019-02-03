@@ -7,6 +7,7 @@ const songSchema = mongoose.Schema({
     artist: String,
     price: Number,
     datePublished: String,
+    url: String,
     numberContributers: Number,
     contributers: [
         {

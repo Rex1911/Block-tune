@@ -17,7 +17,7 @@ const SongCard = (props) => {
             component="img"
             alt="Contemplative Reptile"
             height="140"
-            image="/static/images/cards/contemplative-reptile.jpg"
+            image={song.url}
             title="Contemplative Reptile"
           />
           <CardContent>

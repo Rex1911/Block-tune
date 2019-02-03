@@ -13,7 +13,8 @@ router.post('/temp', (req, res) => {
         artist: req.body.artist,
         numberContributers: req.body.contributers,
         contributers: req.body.contributerArray,
-        id: req.body.id
+        id: req.body.id,
+        url: req.body.url
     });
     newSong.save()
 

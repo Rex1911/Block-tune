@@ -166,6 +166,15 @@ class UploadSong extends Component {
                 onChange = {this.handleChange}
             />
 
+              <TextField
+                label="Url"
+                name="url"
+                margin="normal"
+                variant="outlined"
+                fullWidth
+                onChange = {this.handleChange}
+            />
+
             <TextField
                 label="Price ($)"
                 name="price"

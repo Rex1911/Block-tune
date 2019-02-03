@@ -40,7 +40,6 @@ class OwnedSongsList extends Component{
   }
   
   handleDown = (name) => {
-    let data = {name}
     window.location = `http://localhost:5000/song/download/${name}` 
   }
   
@@ -50,7 +49,7 @@ class OwnedSongsList extends Component{
       ownedSongComponent = this.props.ownedSongArray.map(song => {
         i++;
         return(
-          <Grid item xs key={i}>
+          <Grid item xs={4} key={i}>
             <OwnedSongCard song={song} key={i} down={this.handleDown}/>
           </Grid>
         )
@@ -74,10 +73,11 @@ class OwnedSongsList extends Component{
         >
           owned songs
         </Typography>
-
-        <Grid container spacing={24}>
-          {ownedSongComponent}
-        </Grid>
+        <div style={{margin: "auto 10%"}}>
+          <Grid container spacing={24}>
+            {ownedSongComponent}
+          </Grid>
+        </div>
       </div>
     );
   }
