@@ -8,7 +8,8 @@ const initState = {
   history: '',
   changed: false,
   songId: 0,
-  ownedSongArray: []
+  ownedSongArray: [],
+  publishedSongArray: []
 }
 
 const Reducer = (state = initState, action) => {

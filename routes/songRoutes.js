@@ -32,9 +32,9 @@ router.get('/', (req, res) => {
 });
 
 router.post('/purchase', (req, res) => {
-    let query = { address: req.body.purchasedUserAddress };
+    let query = { address: req.body.publishedUserAddress };
     console.log(query)
-    User.update( query, { "$push": { "ownedSongs": req.body.purchasedSongAddress }})
+    User.update( query, { "$push": { "ownedSongs": req.body.publishedSongAddress }})
         .then(a => res.status(200).json({success: true}))
         .catch(err => res.status(404).json({success: false}));
 });
@@ -46,8 +46,21 @@ router.post('/owned', (req, res) => {
         .catch(err => res.status(404).json({success: false}));
 })
 
+router.post('/published', (req, res) => {
+    console.log("Recive rew")
+    User.find({address: req.body.address})
+        .then(user => res.json(user))
+        .catch(err => res.status(404).json({success: false}));
+})
+
 router.post('/ownedSong', (req, res) => {
     Song.find({contractAddress: req.body.ownedAddress})
+        .then(song => res.json(song))
+        .catch(err => res.status(404).json({success: false}));
+})
+
+router.post('/publishedSong', (req, res) => {
+    Song.find({contractAddress: req.body.publishedAddress})
         .then(song => res.json(song))
         .catch(err => res.status(404).json({success: false}));
 })

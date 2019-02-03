@@ -4,6 +4,7 @@ import Home from "./components/home/Home";
 import Signup from "./components/signup/Signup";
 import UploadSong from "./components/songs/UploadSong";
 import OwnedSongs from "./components/ownedsongs/OwnedSongs";
+import PublishedSongs from "./components/publishedsongs/PublishedSong";
 import { Switch, Route } from "react-router-dom";
 import getWeb3 from './util/getWeb3';
 import FactoryContract from "./contracts/Factory.json";
@@ -67,6 +68,7 @@ class App extends Component {
             <Route path="/signup" component={Signup} />
             <Route path="/uploadsong" component={UploadSong} />
             <Route path="/ownedsongs" component={OwnedSongs} />
+            <Route path="/publishedsongs" component={PublishedSongs} />
           </Switch>
         </div>
       </BrowserRouter>
