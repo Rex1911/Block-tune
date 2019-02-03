@@ -27,7 +27,7 @@ class BottomNav extends Component {
           this.props.changeBottom(newValue)
         }}
       >
-        <BottomNavigationAction label="HomeIcon" icon={<HomeIcon />} />
+        <BottomNavigationAction label="Home" icon={<HomeIcon />} />
         <BottomNavigationAction label="Owned Songs" icon={<FavoriteIcon />} />
         <BottomNavigationAction label="Published Songs" icon={<PublishIcon />} />
       </BottomNavigation>

@@ -13,12 +13,16 @@ router.post('/temp', (req, res) => {
         artist: req.body.artist,
         numberContributers: req.body.contributers,
         contributers: req.body.contributerArray,
-        directory: directory,
         id: req.body.id
     });
     newSong.save()
-        .then(a => res.status(200).json({success: true}))
-        .catch(console.log);
+
+    console.log(req.body.address)
+    User.update({address:req.body.address}, {"$push" : {"publishedSongs": req.body.contractAddress}})
+        .then(a => {
+            res.status(200).json({success:true})
+        })
+        .catch(err => res.status(404).json({success:false}));
 });
 
 router.get('/', (req, res) => {
@@ -55,6 +59,8 @@ router.post('/search', (req, res) => {
 });
 
 router.post("/upload",(req,res) => {
+    let uploadFile = req.files.file;
+    let fileName = req.files.file.name
     uploadFile.mv(
         `${__dirname}/files/${fileName}`,
         (err) => {
@@ -68,9 +74,11 @@ router.post("/upload",(req,res) => {
     )
 })
 
-router.get("/download", (req, res) => {
+router.post("/download", (req, res) => {
     let name = req.body.name;
-    res.download(__dirname + '/files/resume.pdf');
+    console.log(name)
+    console.log(__dirname + '/files/' + name)
+    res.download(__dirname + '/files/' + name);
 })
 
 module.exports = router;

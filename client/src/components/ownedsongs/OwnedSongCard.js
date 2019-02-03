@@ -76,7 +76,7 @@ const SongCard = (props) => {
               position: "absolute",
               right: 0
             }}
-            onClick={() => props.purchase(song.contractAddress, song.price, 1)}
+            onClick={() => props.down(song.name)}
           >
             Download
           </Button>
