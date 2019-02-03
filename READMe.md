@@ -13,3 +13,10 @@ and digital content distribution platform with one-of-a-kind model that shares
 100% of sale proceeds with the artist – charging zero commission or processing fees. At the
 same time, the platform also ensures the benefits are passed on to the users in the form of
 reduced prices. 
+
+
+#Technology Stack
+
+fontend : Reactjs for Building encapsulated components that manage their own state, then compose them to make complex UIs.
+Backend : nodejs for building scalable network applications.
+Contract : solidity for writing Contract.
