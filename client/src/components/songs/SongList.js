@@ -9,7 +9,8 @@ import Song from "../../util/Song";
 
 class SongList extends Component {
   state = {
-    data : []
+    data : [],
+    searchBoxText: ''
   }
   
   componentDidMount = () => {
@@ -29,8 +30,6 @@ class SongList extends Component {
       .then(res => {
         let songContract = Song(address, this.props.web3);
         let valuePrice = price/res.rate;
-        console.log(songContract.methods);
-        console.log(address);
         songContract.methods.purchase()
           .send({
             from: this.props.userAddress,
@@ -42,6 +41,26 @@ class SongList extends Component {
       // Add in owned songs
       // fetch('/song/purchase', )
     }
+  }
+
+  handleSearchChange = e => {
+    this.setState({searchBoxText: e.target.value})
+  }
+
+  handleSearchSubmit = () => {
+    let data = {
+      search: this.state.searchBoxText
+    }
+    fetch("/song/search", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json;charset=UTF-8"
+      },
+      body: JSON.stringify(data)
+    })
+    .then(res => res.json())
+    .then(res => this.setState({data: res}))
+    .catch(console.log);
   }
   
   render() {
@@ -76,10 +95,11 @@ class SongList extends Component {
         <div style={{ textAlign: "center" }}>
           <TextField
             label="Search"
-            value="Search here"
             margin="normal"
             variant="outlined"
+            name="searchBoxText"
             style={{ margin: "auto", marginBottom: 10 }}
+            onChange={this.handleSearchChange}
           />
           <br />
   
@@ -87,6 +107,7 @@ class SongList extends Component {
             variant="contained"
             color="secondary"
             style={{ marginBottom: 20 }}
+            onClick={this.handleSearchSubmit}
           >
             Search
           </Button>

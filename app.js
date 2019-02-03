@@ -15,13 +15,6 @@ app.use(express.static(path.resolve(__dirname,"client")));
 app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({ extended: false }))
 
-// let testUser = new User({
-//     name: "Aryan",
-//     address: "0x780b7F58b201ac352fBD22654d04D82926386aF8",
-//     publishedSongs: [],
-//     ownedSongs: []
-// });
-
 //=======================
 // Routes
 //=======================

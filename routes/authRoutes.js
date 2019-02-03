@@ -3,7 +3,6 @@ const express   = require('express'),
       User      = require('../models/userModel');
 
 router.post('/login', async (req, res) => {
-    console.log(req.body);
     User.find({address:req.body.address} , (err, userList) => {
         if(err) {
             console.log(err);

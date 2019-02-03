@@ -39,4 +39,10 @@ router.post('/owned', (req, res) => {
         .catch(err => res.status(404).json({success: false}));
 })
 
+router.post('/search', (req, res) => {
+    Song.find({$or: [{name: req.body.search}, {artist: req.body.search}, {genre: req.body.search}]})
+        .then(searchResults => res.json(searchResults))
+        .catch(console.log);
+});
+
 module.exports = router;
