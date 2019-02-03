@@ -67,7 +67,7 @@ class PublishedSongList extends Component{
             marginBottom: 10
           }}
         >
-          owned songs
+          published songs
         </Typography>
 
         <Grid container spacing={24}>
@@ -87,7 +87,7 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
   return{
-    addSong: (song) => dispatch({type:"ADD_SONG", song}),
+    addSong: (song) => dispatch({type:"ADD_SONG_PUBLISHER", song}),
     firstSet: () => dispatch({type: "FIRST_SET_START"})
   }
 }
