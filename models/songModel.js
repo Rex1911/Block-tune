@@ -14,7 +14,8 @@ const songSchema = mongoose.Schema({
             cut: String,
             accepted: Boolean
         }
-    ]
+    ],
+    directory: String
 });
 
 module.exports = mongoose.model("Song",songSchema);

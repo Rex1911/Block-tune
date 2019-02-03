@@ -5,6 +5,20 @@ const express   = require('express'),
 
 // To add new song
 router.post('/temp', (req, res) => {
+    let uploadFile = req.files.file
+    let directory;
+    const fileName = req.body.name
+    uploadFile.mv(
+        `${__dirname}/../files/${fileName}`,
+        (err) => {
+            if(err) {
+                console.log("Error in uploading")
+            } else {
+                directory = `${__dirname}/../files/${fileName}`
+            }
+        }
+    )
+    
     const newSong = new Song({
         name: req.body.name,
         contractAddress: req.body.contractAddress,
@@ -13,6 +27,7 @@ router.post('/temp', (req, res) => {
         artist: req.body.artist,
         numberContributers: req.body.contributers,
         contributers: req.body.contributerArray,
+        directory: directory,
         id: req.body.id
     });
     newSong.save()
@@ -42,7 +57,6 @@ router.post('/owned', (req, res) => {
 })
 
 router.post('/ownedSong', (req, res) => {
-    console.log("Recive rew")
     Song.find({contractAddress: req.body.ownedAddress})
         .then(song => res.json(song))
         .catch(err => res.status(404).json({success: false}));
@@ -53,5 +67,20 @@ router.post('/search', (req, res) => {
         .then(searchResults => res.json(searchResults))
         .catch(console.log);
 });
+
+router.post("/upload",(req,res) => {
+    let uploadFile = req.files.file
+    const fileName = req.files.file.name
+    uploadFile.mv(
+        `${__dirname}/../files/${fileName}`,
+        (err) => {
+            if(err) {
+                console.log("Error in uploading")
+            } else {
+                res.json({success:true})
+            }
+        }
+    )
+})
 
 module.exports = router;

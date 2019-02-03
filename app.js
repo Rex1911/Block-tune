@@ -4,7 +4,9 @@ const express       = require("express"),
       path          = require("path"),
       mongoose      = require("mongoose"),
       authRoutes    = require("./routes/authRoutes"),
-      songRoutes    = require("./routes/songRoutes");
+      songRoutes    = require("./routes/songRoutes"),
+      fileUpload    = require('express-fileupload'),
+      cors          = require('cors');
 
 //=======================
 // DATABASE CONFIG
@@ -14,6 +16,8 @@ mongoose.connect("mongodb://localhost/blocktune", { useNewUrlParser: true });
 app.use(express.static(path.resolve(__dirname,"client")));
 app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({ extended: false }))
+app.use(cors())
+app.use(fileUpload())
 
 //=======================
 // Routes
