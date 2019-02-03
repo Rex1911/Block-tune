@@ -10,10 +10,10 @@ class OwnedSongsList extends Component{
   }
   
   componentDidMount = () => {
+    this.props.firstSet();
     let data = {
       address: this.props.address
     }
-    let songArray = [];
     fetch("/song/owned", {
       method: "POST",
       headers: {
@@ -33,20 +33,16 @@ class OwnedSongsList extends Component{
           body: JSON.stringify(data)
         })
           .then(res => res.json())
-          .then(song => songArray.push(song[0]));
+          .then(song => this.props.addSong(song));
       }
-      this.setState({data: songArray}, () => {
-        console.log("Done", this.state.data);
-      });
     })
     .catch(console.log);
   }
   
   render(){
     let ownedSongComponent;
-      console.log(this.state.data);
-      ownedSongComponent = this.state.data.map(song => {
-        console.log("MEMEME");
+      console.log(this.props.ownedSongArray);
+      ownedSongComponent = this.props.ownedSongArray.map(song => {
         return(
           <Grid item xs>
             <SongCard song={song}/>
@@ -83,8 +79,16 @@ class OwnedSongsList extends Component{
 
 const mapStateToProps = (state) => {
   return{
-    address: state.address
+    address: state.address,
+    ownedSongArray: state.ownedSongArray
   }
 }
 
-export default connect(mapStateToProps)(OwnedSongsList);
+const mapDispatchToProps = (dispatch) => {
+  return{
+    addSong: (song) => dispatch({type:"ADD_SONG", song}),
+    firstSet: () => dispatch({type: "FIRST_SET_START"})
+  }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(OwnedSongsList);

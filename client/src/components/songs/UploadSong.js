@@ -65,10 +65,7 @@ class UploadSong extends Component {
         },
         body: JSON.stringify(data)
       })
-      .then(res => res.json())
-      .then(res => {
-        console.log(res)
-      })
+      .then(() => this.props.history.push('/'))
       .catch(err => {
         console.log(err);
       });

@@ -7,7 +7,8 @@ const initState = {
   bottomValue: 0,
   history: '',
   changed: false,
-  songId: 0
+  songId: 0,
+  ownedSongArray: []
 }
 
 const Reducer = (state = initState, action) => {
@@ -48,6 +49,16 @@ const Reducer = (state = initState, action) => {
         ...state,
         changed: false
       }
+    case "ADD_SONG":
+      return{
+        ...state,
+        ownedSongArray: [...state.ownedSongArray, action.song]
+      }
+      case "FIRST_SET_START":
+        return{
+          ...state,
+          ownedSongArray: [],
+        }
     default:
       console.log("Default Reducer");
       return{
