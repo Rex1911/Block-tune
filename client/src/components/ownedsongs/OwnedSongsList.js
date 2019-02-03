@@ -39,6 +39,17 @@ class OwnedSongsList extends Component{
     .catch(console.log);
   }
   
+  handleDown = (name) => {
+    let data = {name}
+    fetch("/song/download",{
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json;charset=UTF-8"
+      },
+      body:JSON.stringify(data)
+    })
+  }
+  
   render(){
     let ownedSongComponent;
       let i=0;
@@ -46,7 +57,7 @@ class OwnedSongsList extends Component{
         i++;
         return(
           <Grid item xs key={i}>
-            <OwnedSongCard song={song} key={i} />
+            <OwnedSongCard song={song} key={i} down={this.handleDown}/>
           </Grid>
         )
       });

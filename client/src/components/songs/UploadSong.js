@@ -80,12 +80,14 @@ class UploadSong extends Component {
     let songAddress = await this.props.factoryContract.methods.songMapping(this.state.id).call();
     this.setState({contractAddress: songAddress}, () => {
       const {status, id, ...data} = this.state;
+      let sendingData = {...data, address: this.props.address};
+      console.log(sendingData);
       fetch("/song/temp", {
         method: "POST",
         headers: {
           "Content-Type": "application/json;charset=UTF-8"
         },
-        body: JSON.stringify(data)
+        body: JSON.stringify(sendingData)
       })
       .then(() => this.props.history.push('/'))
       .catch(err => {
