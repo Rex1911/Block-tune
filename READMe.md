@@ -18,5 +18,7 @@ reduced prices.
 #Technology Stack
 
 fontend : Reactjs for Building encapsulated components that manage their own state, then compose them to make complex UIs.
+
 Backend : nodejs for building scalable network applications.
+
 Contract : solidity for writing Contract.
