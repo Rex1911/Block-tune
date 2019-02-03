@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { connect } from 'react-redux';
 import Grid from "@material-ui/core/Grid";
-import SongCard from "../songs/SongCard";
+import OwnedSongCard from "./OwnedSongCard";
 import Typography from "@material-ui/core/Typography";
 
 class OwnedSongsList extends Component{
@@ -46,7 +46,7 @@ class OwnedSongsList extends Component{
         i++;
         return(
           <Grid item xs key={i}>
-            <SongCard song={song} key={i} />
+            <OwnedSongCard song={song} key={i} />
           </Grid>
         )
       });

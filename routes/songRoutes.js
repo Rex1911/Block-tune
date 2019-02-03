@@ -5,20 +5,6 @@ const express   = require('express'),
 
 // To add new song
 router.post('/temp', (req, res) => {
-    let uploadFile = req.files.file
-    let directory;
-    const fileName = req.body.name
-    uploadFile.mv(
-        `${__dirname}/../files/${fileName}`,
-        (err) => {
-            if(err) {
-                console.log("Error in uploading")
-            } else {
-                directory = `${__dirname}/../files/${fileName}`
-            }
-        }
-    )
-    
     const newSong = new Song({
         name: req.body.name,
         contractAddress: req.body.contractAddress,
