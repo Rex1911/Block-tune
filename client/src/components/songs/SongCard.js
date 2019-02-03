@@ -8,7 +8,6 @@ import Button from "@material-ui/core/Button";
 import Typography from "@material-ui/core/Typography";
 
 const SongCard = (props) => {
-  console.log(props)
   if(props.song){
     let { song } = props;
     return (

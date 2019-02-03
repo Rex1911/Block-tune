@@ -51,7 +51,6 @@ class App extends Component {
     })
     .then(res => res.json())
     .then(res => {
-      console.log(!res.newUser);
       if(!res.newUser) {
         this.props.setUser(res.user.name)
       }

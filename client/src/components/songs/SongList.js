@@ -76,9 +76,11 @@ class SongList extends Component {
   }
   
   render() {
+    let i=0;
     let songList = this.state.data.map(song => {
+      i++;
       return(
-        <Grid item xs={4}>
+        <Grid item xs={4} key={i}>
             <SongCard song={song} purchase={this.handlePurchase} />
         </Grid>
       )

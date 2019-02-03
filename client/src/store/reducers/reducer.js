@@ -32,7 +32,6 @@ const Reducer = (state = initState, action) => {
         songContract: action.songContract,
       }
     case "SET_USERNAME":
-      console.log("setname", action.name);
       return{
         ...state,
         username: action.name,
@@ -52,7 +51,7 @@ const Reducer = (state = initState, action) => {
     case "ADD_SONG":
       return{
         ...state,
-        ownedSongArray: [...state.ownedSongArray, action.song]
+        ownedSongArray: [...state.ownedSongArray, action.song[0]]
       }
       case "FIRST_SET_START":
         return{

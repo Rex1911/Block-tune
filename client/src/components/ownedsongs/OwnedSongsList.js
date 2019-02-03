@@ -41,11 +41,12 @@ class OwnedSongsList extends Component{
   
   render(){
     let ownedSongComponent;
-      console.log(this.props.ownedSongArray);
+      let i=0;
       ownedSongComponent = this.props.ownedSongArray.map(song => {
+        i++;
         return(
-          <Grid item xs>
-            <SongCard song={song}/>
+          <Grid item xs key={i}>
+            <SongCard song={song} key={i} />
           </Grid>
         )
       });
