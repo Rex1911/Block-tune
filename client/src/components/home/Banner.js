@@ -27,7 +27,7 @@ const Banner = () => {
       </div>
       <Typography
         align="center"
-        style={{ fontFamily: "Major Mono Display", fontSize: "10vw" }}
+        style={{ fontFamily: "Major Mono Display", fontSize: "4vw" }}
       >
         about us
       </Typography>

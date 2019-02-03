@@ -1,6 +1,7 @@
 const express   = require('express'),
       router    = express.Router(),
-      Song      = require('../models/songModel');
+      Song      = require('../models/songModel'),
+      User      = require('../models/userModel');
 
 // To add new song
 router.post('/temp', (req, res) => {
@@ -23,6 +24,19 @@ router.get('/', (req, res) => {
     Song.find()
         .then(list => res.json(list))
         .catch(console.log);
+});
+
+router.post('/purchase', (req, res) => {
+    let query = { address: req.body.address };
+    User.replaceOne( query, { "$push": { "ownedSongs": req.body.songAddress }})
+        .then(a => res.status(200).json({success: true}))
+        .catch(err => res.status(404).json({success: false}));
+});
+
+router.post('/owned', (req, res) => {
+    User.find({address: req.body.address})
+        .then(user => res.json(user))
+        .catch(err => res.status(404).json({success: false}));
 })
 
 module.exports = router;

@@ -8,6 +8,7 @@ import Button from "@material-ui/core/Button";
 import Typography from "@material-ui/core/Typography";
 
 const SongCard = (props) => {
+  let { song } = props;
   return (
     <Card>
       <CardActionArea>
@@ -20,11 +21,11 @@ const SongCard = (props) => {
         />
         <CardContent>
           <Typography gutterBottom variant="h5" component="h2">
-            {props.title}
+            {song.name}
           </Typography>
-          <Typography component="p">Author: {props.author}</Typography>
-          <Typography component="p">Genre: {props.genre}</Typography>
-          <Typography component="p">Cost: {props.cost}</Typography>
+          <Typography component="p">Author: {song.artist}</Typography>
+          <Typography component="p">Genre: {song.genre}</Typography>
+          <Typography component="p">Cost: {song.price}$</Typography>
         </CardContent>
       </CardActionArea>
       <CardActions style={{ position: "relative" }}>
@@ -71,12 +72,13 @@ const SongCard = (props) => {
             position: "absolute",
             right: 0
           }}
+          onClick={() => props.purchase(song.contractAddress, song.price)}
         >
           Purchase
         </Button>
       </CardActions>
     </Card>
   );
-};
+}
 
 export default SongCard;
