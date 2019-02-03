@@ -9,4 +9,7 @@ innovative platform and the use of new-age technology is attempting to address t
 by cutting out middlemen and optimizing content management and delivery. 
 
 The BlockTune ecosystem, built using Ethereum protocol is a highly secure and transparent music
-and digital content distribution platform 
+and digital content distribution platform with one-of-a-kind model that shares
+100% of sale proceeds with the artist – charging zero commission or processing fees. At the
+same time, the platform also ensures the benefits are passed on to the users in the form of
+reduced prices. 
