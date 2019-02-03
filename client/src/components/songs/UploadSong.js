@@ -7,6 +7,7 @@ import Button from "@material-ui/core/Button";
 import BottomNav from "../layout/BottomNav";
 import Navbar from "../layout/Navbar";
 import formatDate from '../../util/date';
+import axios from 'axios';
 
 class UploadSong extends Component {
   state = {
@@ -26,6 +27,27 @@ class UploadSong extends Component {
 
   handleChange = (e) => {
     this.setState({[e.target.name]: e.target.value})
+  }
+
+  handleFileClick = (e) => {
+      this.setState({file: e.target.files[0]}, () => {
+        console.log(this.state.file);
+        setTimeout(() => {
+          console.log('Sending');
+          this.handleUpload();
+        }, 2000);
+      }); 
+  }
+
+  handleUpload = () => {
+    const data = new FormData()
+    data.append('file', this.state.file, this.state.file.name)
+    console.log(data);
+    axios
+      .post('/song/upload', data)
+      .then(res => {
+        console.log(res.statusText)
+      })
   }
 
   handleSubmit = async () => {
@@ -150,6 +172,8 @@ class UploadSong extends Component {
                 fullWidth
                 onChange = {this.handleChange}
             />
+
+            <input type="file" onChange={this.handleFileClick} />
 
             {contributers}
             <Fab
