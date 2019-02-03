@@ -146,7 +146,7 @@ class UploadSong extends Component {
             />
 
             <TextField
-                label="Price"
+                label="Price ($)"
                 name="price"
                 margin="normal"
                 variant="outlined"

@@ -20,7 +20,7 @@ class SongList extends Component {
     })
   }
 
-  handlePurchase = async (address, price) => {
+  handlePurchase = async (address, price, purchasedSong) => {
     fetch('https://rest.coinapi.io/v1/exchangerate/ETH/USD',{
       method: "GET",
       headers: {'X-CoinAPI-Key': 'C112BC30-2ED6-4ACB-BDEB-9E7FBA42140B'}
@@ -38,6 +38,10 @@ class SongList extends Component {
           })
           .then(console.log);
       });
+    if(purchasedSong){
+      // Add in owned songs
+      // fetch('/song/purchase', )
+    }
   }
   
   render() {
