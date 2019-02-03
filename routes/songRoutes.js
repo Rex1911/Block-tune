@@ -27,8 +27,9 @@ router.get('/', (req, res) => {
 });
 
 router.post('/purchase', (req, res) => {
-    let query = { address: req.body.address };
-    User.replaceOne( query, { "$push": { "ownedSongs": req.body.songAddress }})
+    let query = { address: req.body.purchasedUserAddress };
+    console.log(query)
+    User.update( query, { "$push": { "ownedSongs": req.body.purchasedSongAddress }})
         .then(a => res.status(200).json({success: true}))
         .catch(err => res.status(404).json({success: false}));
 });

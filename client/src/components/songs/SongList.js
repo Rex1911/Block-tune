@@ -36,12 +36,24 @@ class SongList extends Component {
             from: this.props.userAddress,
             value: this.props.web3.utils.toWei(valuePrice.toString(),'ether')
           })
-          .then(console.log);
+          .then(() => {
+            let purchasedSongData = {
+              purchasedSongAddress: address,
+              purchasedUserAddress: this.props.userAddress
+            }
+            
+            fetch("/song/purchase",{
+              method:"POST",
+              headers : {
+                "Content-Type": "application/json;charset=UTF-8"
+              },
+              body: JSON.stringify(purchasedSongData)
+            })
+          })
+          .catch((e) => {
+            console.log(e)
+          });
       });
-    if(purchasedSong){
-      // Add in owned songs
-      // fetch('/song/purchase', )
-    }
   }
   
   render() {
